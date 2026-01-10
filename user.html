@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Felhasználó profil</title>
+<style>
+body { background:#0b0b0b; color:white; font-family:Arial; margin:0; padding:0; }
+.card { background:#1f1f1f; padding:25px; max-width:700px; margin:50px auto; border-radius:15px; box-shadow:0 0 20px rgba(0,0,0,0.5); }
+h2 { color:#4caf50; }
+h3 { color:#ff5252; border-bottom:1px solid #444; padding-bottom:3px; }
+.section { margin-top:15px; }
+ul { padding-left:20px; }
+.danger { font-weight:bold; }
+.green { color:#4caf50; }
+.yellow { color:#ffeb3b; }
+.red { color:#f44336; }
+.button-back {
+  display:inline-block;
+  margin-top:20px;
+  padding:10px 15px;
+  background:#2196f3;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+.button-back:hover { background:#1976d2; }
+</style>
+</head>
+<body>
+
+<div class="card" id="profile">Betöltés...</div>
+
+<script>
+// URL paraméterből ID
+function getID() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("id");
+}
+
+const USER_ID = getID();
+
+fetch("users.json")
+  .then(res => res.json())
+  .then(db => {
+    const data = db.users[USER_ID];
+    const p = document.getElementById("profile");
+
+    if(!data) {
+      p.innerHTML = "❌ Nincs ilyen profil<br><button class='button-back' onclick='history.back()'>Vissza</button>";
+      return;
+    }
+
+    // Danger level színezés
+    let dangerClass = "green";
+    if(data.dangerLevel >= 5) dangerClass = "red";
+    else if(data.dangerLevel >= 3) dangerClass = "yellow";
+
+    p.innerHTML = `
+      <h2>${data.name}</h2>
+      <p>Születési év: ${data.birth}</p>
+      <p>Kedvenc szín: ${data.favoriteColor}</p>
+      <p class="danger">⚠️ Danger level: <span class="${dangerClass}">${data.dangerLevel}</span></p>
+
+      <div class="section">
+        <h3>Minecraft</h3>
+        <p>Fő fiók: ${data.minecraft.main}</p>
+        <p>Alt fiókok: ${data.minecraft.alts.join(", ") || "nincs"}</p>
+        <p>Rank: ${data.minecraft.rank}</p>
+      </div>
+
+      <div class="section">
+        <h3>Munkák</h3>
+        <ul>${data.jobs.map(job => `<li>${job}</li>`).join("")}</ul>
+      </div>
+
+      <div class="section">
+        <h3>Rendőri feljegyzések</h3>
+        <ul>
+          ${data.policeRecords.length === 0 ? "<li>Nincs</li>" :
+          data.policeRecords.map(r => `<li>${r.date} – ${r.reason} (+${r.dangerIncrease})</li>`).join("")}
+        </ul>
+      </div>
+
+      <button class="button-back" onclick="history.back()">⬅ Vissza</button>
+    `;
+  });
+</script>
+
+</body>
+</html>

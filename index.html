@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Profil kereső</title>
+<style>
+body { background:#121212; color:white; font-family:Arial; display:flex; justify-content:center; align-items:center; height:100vh; }
+.container { text-align:center; background:#1f1f1f; padding:30px; border-radius:15px; box-shadow:0 0 20px rgba(0,0,0,0.5); }
+input { padding:10px; border-radius:8px; border:none; width:150px; margin-right:10px; }
+button { padding:10px 15px; border-radius:8px; border:none; background:#4caf50; color:white; cursor:pointer; }
+button:hover { background:#45a049; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Felhasználó kereső</h2>
+  <input type="text" id="userId" placeholder="ID pl. 001">
+  <button onclick="goUser()">Megnyitás</button>
+</div>
+
+<script>
+function goUser() {
+  const id = document.getElementById("userId").value.trim();
+  if(id) {
+    window.location.href = `user.html?id=${id}`;
+  }
+}
+</script>
+
+</body>
+</html>

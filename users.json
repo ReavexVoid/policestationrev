@@ -1,0 +1,62 @@
+{
+  "users": {
+    "001": {
+      "name": "Reavex",
+      "birth": "2009-07-16",
+      "dangerLevel": 3,
+      "favoriteColor": "Kék",
+      "minecraft": {
+        "main": "ReavexVoid",
+        "alts": ["Reavex", "Zfuture"],
+        "rank": "Developer"
+      },
+      "jobs": ["Fejlesztő", "Rendőr", "Hacker"],
+      "policeRecords": [
+        {
+          "date": "2025-01-10",
+          "reason": "Tiltott zóna",
+          "dangerIncrease": 1
+        },
+        {
+          "date": "2025-02-05",
+          "reason": "Engedély nélküli repülés",
+          "dangerIncrease": 2
+        }
+      ]
+    },
+
+    "002": {
+      "name": "Foxmester10",
+      "birth": "1987-01-01",
+      "dangerLevel": 0,
+      "favoriteColor": "Narancssárga",
+      "minecraft": {
+        "main": "Foxmester10",
+        "alts": [],
+        "rank": "Owner"
+      },
+      "jobs": ["Rendőr"],
+      "policeRecords": []
+    },
+
+    "003": {
+      "name": "Paper",
+      "birth": "2026-01-01",
+      "dangerLevel": 3,
+      "favoriteColor": "Ismeretlen",
+      "minecraft": {
+        "main": "Sharpneessss",
+        "alts": ["Frozen_BN"],
+        "rank": "Tag"
+      },
+      "jobs": ["Harcos", "Közmunkás"],
+      "policeRecords": [
+        {
+          "date": "2025-03-15",
+          "reason": "Engedély nélküli ölés.",
+          "dangerIncrease": 3
+        }
+      ]
+    }
+  }
+}
