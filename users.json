@@ -42,21 +42,22 @@
     "003": {
       "name": "Paper",
       "birth": "2026-01-01",
-      "dangerLevel": 3,
-      "favoriteColor": "Ismeretlen",
+      "dangerLevel": 1,
+      "favoriteColor": "Kék",
       "minecraft": {
-        "main": "Sharpneessss",
-        "alts": ["Frozen_BN"],
+        "main": "Angolvok1926",
+        "alts": ["Frozen_BN", "Pinkgh", "Sharpnessss"],
         "rank": "Tag"
       },
       "jobs": ["Harcos", "Közmunkás"],
       "policeRecords": [
         {
           "date": "2025-03-15",
-          "reason": "Engedély nélküli ölés.",
-          "dangerIncrease": 3
+          "reason": "Nincs körözés",
+          "dangerIncrease": 0
         }
       ]
     }
   }
+
 }
