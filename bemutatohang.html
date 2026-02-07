@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bemutató Felolvasás</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f0f0f0; }
+        h1 { text-align: center; }
+        .slide { background: #fff; padding: 20px; margin: 15px 0; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        button { padding: 10px 20px; margin-top: 10px; cursor: pointer; border: none; border-radius: 5px; background-color: #007bff; color: white; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Bemutató Felolvasás</h1>
+
+    <div class="slide"><h2>🗣️ SLIDE 1 – Bevezetés</h2><button onclick="speak(slide1)">Felolvasás</button></div>
+    <div class="slide"><h2>🗣️ SLIDE 2 – A projekt célja</h2><button onclick="speak(slide2)">Felolvasás</button></div>
+    <div class="slide"><h2>🗣️ SLIDE 3 – Profil kereső oldal</h2><button onclick="speak(slide3)">Felolvasás</button></div>
+    <div class="slide"><h2>🗣️ SLIDE 4 – Felhasználói profil oldal</h2><button onclick="speak(slide4)">Felolvasás</button></div>
+    <div class="slide"><h2>🗣️ SLIDE 5 – Adatkezelés</h2><button onclick="speak(slide5)">Felolvasás</button></div>
+    <div class="slide"><h2>🗣️ SLIDE 6 – Danger Level rendszer</h2><button onclick="speak(slide6)">Felolvasás</button></div>
+    <div class="slide"><h2>🗣️ SLIDE 7 – Felhasználási lehetőségek</h2><button onclick="speak(slide7)">Felolvasás</button></div>
+    <div class="slide"><h2>🗣️ SLIDE 8 – Zárás</h2><button onclick="speak(slide8)">Felolvasás</button></div>
+
+    <script>
+        const slides = [
+            `Sziasztok! Ebben a bemutatóban egy általam készített weboldalt fogok bemutatni, ami egy felhasználói profil rendszert valósít meg. A projekt célja az volt, hogy egy egyszerű, mégis látványos módon lehessen adatokat megjeleníteni egy weboldalon.`,
+            `A projekt fő célja az volt, hogy egy felhasználó adatait könnyen áttekinthető formában jelenítse meg. Fontos volt, hogy a rendszer ID alapján működjön, tehát ne kelljen bonyolult keresést használni, és iskolai bemutatóra is alkalmas legyen.`,
+            `Az első oldal egy kereső oldal. Itt a felhasználó megad egy azonosítót, például egy számot. A gomb megnyomása után az oldal automatikusan átirányít a profil oldalra, ahol már az adott felhasználó adatai jelennek meg.`,
+            `A profil oldalon egy kártyás elrendezést használtam, hogy az adatok jól elkülönüljenek és könnyen olvashatók legyenek. Itt láthatók például a személyes adatok, Minecraft fiók információk, valamint a munkák és egyéb feljegyzések.`,
+            `Az adatok nem kézzel vannak beírva a HTML fájlba, hanem egy külön JSON fájlbol töltődnek be. A JavaScript fetch függvény segítségével az oldal lekéri ezeket az adatokat, majd dinamikusan jeleníti meg őket. Ha nincs ilyen felhasználó, a rendszer ezt is jelzi.`,
+            `A Danger Level egy szám alapú érték, ami azt mutatja meg, hogy a felhasználó mennyire veszélyes. Ez színekkel van jelölve: zöld az alacsony, sárga a közepes, piros pedig a magas veszélyességi szintet jelenti. Így egy pillantással látható az állapot.`,
+            `Ez a rendszer többféleképpen is felhasználható. Például iskolai projektekhez, játékos profil rendszerekhez, vagy akár roleplay szerverekhez is. A felépítése miatt könnyen bővíthető.`,
+            `Összességében ez a projekt jól bemutatja, hogyan lehet HTML, CSS és JavaScript segítségével egy működő webes rendszert készíteni. Köszönöm a figyelmet, van esetleg kérdés?`
+        ];
+
+        let selectedVoice = null;
+
+        function loadVoices() {
+            const voices = speechSynthesis.getVoices();
+            selectedVoice = voices.find(v => v.lang.startsWith('hu') && !v.localService) || voices.find(v => v.lang.startsWith('hu')) || voices[0];
+        }
+
+        speechSynthesis.onvoiceschanged = loadVoices;
+        loadVoices();
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'hu-HU';
+                if(selectedVoice) utterance.voice = selectedVoice;
+                utterance.rate = 1;
+                utterance.pitch = 1;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("A böngésződ nem támogatja a szövegfelolvasást.");
+            }
+        }
+
+        // Billentyűzet események: szám 1-8
+        document.addEventListener('keydown', (e) => {
+            if(e.key >= '1' && e.key <= '8') {
+                const index = parseInt(e.key) - 1;
+                speak(slides[index]);
+            }
+        });
+    </script>
+</body>
+</html>
