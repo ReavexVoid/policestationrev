@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Felhasználói Profil Rendszer – Prezentáció</title>
+
+<style>
+:root {
+  --bg:#050505;
+  --card:#121212;
+  --primary:#4caf50;
+  --secondary:#2196f3;
+  --text:#eaeaea;
+  --muted:#777;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:radial-gradient(circle at top,#111,#000);
+  color:var(--text);
+  font-family:"Segoe UI",Arial,sans-serif;
+  overflow:hidden;
+}
+
+/* HEADER */
+.header {
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:14px 40px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #222;
+  z-index:10;
+}
+
+/* SLIDE */
+.slide {
+  display:none;
+  height:100vh;
+  padding:120px;
+}
+
+.slide.active {
+  display:block;
+}
+
+/* CARD */
+.card {
+  background:var(--card);
+  border-radius:24px;
+  padding:55px 65px;
+  max-width:1000px;
+  box-shadow:0 0 60px rgba(0,0,0,0.9);
+  animation:cardIn .9s ease forwards;
+}
+
+/* TEXT */
+h1 { font-size:56px; color:var(--primary); }
+h2 { font-size:42px; color:var(--secondary); }
+p,li { font-size:24px; line-height:1.6; }
+
+/* BULLETS */
+li {
+  opacity:0;
+  transform:translateX(-30px);
+}
+li.show {
+  animation:bulletIn .5s ease forwards;
+}
+
+/* NEXT BUTTON */
+.next-btn {
+  position:absolute;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  border:2px solid var(--secondary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  color:var(--secondary);
+  font-size:30px;
+  box-shadow:0 0 25px rgba(33,150,243,.4);
+  transition:.3s;
+}
+.next-btn:hover {
+  background:var(--secondary);
+  color:black;
+  box-shadow:0 0 40px rgba(33,150,243,.9);
+}
+
+/* DANGER GLOW */
+.glow-green { color:#4caf50; text-shadow:0 0 15px #4caf50; }
+.glow-yellow { color:#ffeb3b; text-shadow:0 0 18px #ffeb3b; }
+.glow-red { color:#f44336; text-shadow:0 0 22px #f44336; }
+
+/* FOOTER */
+.footer {
+  position:absolute;
+  bottom:20px;
+  right:40px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* ANIMATIONS */
+@keyframes cardIn {
+  from { opacity:0; transform:scale(.95) translateY(30px); }
+  to { opacity:1; transform:scale(1) translateY(0); }
+}
+@keyframes bulletIn {
+  to { opacity:1; transform:translateX(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <b>Projekt:</b> Felhasználói Profil Rendszer |
+  <b>Készítette:</b> Reavex
+</div>
+
+<!-- SLIDES -->
+
+<div class="slide active">
+  <div class="card">
+    <h1>Felhasználói Profil Rendszer</h1>
+    <p>Modern, sötét témás webes rendszer felhasználói adatok vizuális megjelenítésére.</p>
+  </div>
+  <div class="next-btn">●</div>
+</div>
+
+<div class="slide">
+  <div class="card">
+    <h2>A projekt célja</h2>
+    <ul>
+      <li>Felhasználói adatok kezelése</li>
+      <li>Profil alapú megjelenítés</li>
+      <li>Gyors keresés ID alapján</li>
+      <li>Letisztult felhasználói élmény</li>
+    </ul>
+  </div>
+  <div class="next-btn">●</div>
+</div>
+
+<div class="slide">
+  <div class="card">
+    <h2>Profil kereső oldal</h2>
+    <ul>
+      <li>Felhasználó ID megadása</li>
+      <li>Automatikus átirányítás</li>
+      <li>Egyszerű sötét dizájn</li>
+    </ul>
+  </div>
+  <div class="next-btn">●</div>
+</div>
+
+<div class="slide">
+  <div class="card">
+    <h2>Felhasználói profil oldal</h2>
+    <ul>
+      <li>Kártyás elrendezés</li>
+      <li>Személyes és játékos adatok</li>
+      <li>Munkák és feljegyzések</li>
+    </ul>
+  </div>
+  <div class="next-btn">●</div>
+</div>
+
+<div class="slide">
+  <div class="card">
+    <h2>Danger Level rendszer</h2>
+    <ul>
+      <li class="glow-green">Zöld – alacsony veszély</li>
+      <li class="glow-yellow">Sárga – közepes veszély</li>
+      <li class="glow-red">Piros – magas veszély</li>
+    </ul>
+  </div>
+  <div class="next-btn">●</div>
+</div>
+
+<div class="slide">
+  <div class="card">
+    <h1>Köszönöm a figyelmet!</h1>
+    <p>Van kérdés?</p>
+  </div>
+</div>
+
+<script>
+let slides=document.querySelectorAll(".slide");
+let index=0;
+
+function showSlide(i){
+  slides.forEach(s=>s.classList.remove("active"));
+  slides[i].classList.add("active");
+
+  const bullets=slides[i].querySelectorAll("li");
+  bullets.forEach((b,j)=>{
+    b.classList.remove("show");
+    setTimeout(()=>b.classList.add("show"),j*300);
+  });
+}
+
+document.querySelectorAll(".next-btn").forEach(btn=>{
+  btn.onclick=()=> {
+    index=Math.min(index+1,slides.length-1);
+    showSlide(index);
+  };
+});
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight"||e.key===" "){
+    index=Math.min(index+1,slides.length-1);
+    showSlide(index);
+  }
+  if(e.key==="ArrowLeft"){
+    index=Math.max(index-1,0);
+    showSlide(index);
+  }
+});
+</script>
+
+</body>
+</html>
