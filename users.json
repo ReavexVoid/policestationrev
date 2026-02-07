@@ -7,24 +7,19 @@
       "favoriteColor": "Kék",
       "minecraft": {
         "main": "ReavexVoid",
-        "alts": ["Reavex", "Zfuture"],
+        "alts": [
+          "Reavex",
+          "Zfuture"
+        ],
         "rank": "Developer"
       },
-      "jobs": ["Fejlesztő", "Rendőr", "Hacker"],
-      "policeRecords": [
-        {
-          "date": "2025-01-10",
-          "reason": "Tiltott zóna",
-          "dangerIncrease": 1
-        },
-        {
-          "date": "2025-02-05",
-          "reason": "Engedély nélküli repülés",
-          "dangerIncrease": 2
-        }
-      ]
+      "jobs": [
+        "Fejlesztő",
+        "Rendőr",
+        "Hacker"
+      ],
+      "policeRecords": []
     },
-
     "002": {
       "name": "Foxmester10",
       "birth": "1987-01-01",
@@ -35,10 +30,11 @@
         "alts": [],
         "rank": "Owner"
       },
-      "jobs": ["Rendőr"],
+      "jobs": [
+        "Rendőr"
+      ],
       "policeRecords": []
     },
-
     "003": {
       "name": "Paper",
       "birth": "2026-01-01",
@@ -46,18 +42,36 @@
       "favoriteColor": "Kék",
       "minecraft": {
         "main": "Angolvok1926",
-        "alts": ["Frozen_BN", "Pinkgh", "Sharpnessss"],
-        "rank": "Tag"
+        "rank": "Frozen_BN, Pinkgh, Sharpnessss",
+        "alts": [
+          "Frozen_BN",
+          "Pinkgh",
+          "Sharpnessss"
+        ]
       },
-      "jobs": ["Harcos", "Közmunkás"],
-      "policeRecords": [
-        {
-          "date": "2025-03-15",
-          "reason": "Nincs körözés",
-          "dangerIncrease": 0
-        }
-      ]
+      "jobs": [
+        "Rendőr",
+        "Közmunkás"
+      ],
+      "policeRecords": []
+    },
+    "004": {
+      "name": "dreamyboyYT",
+      "birth": "2001-01-01",
+      "dangerLevel": 1,
+      "favoriteColor": "Sötét Zöld",
+      "minecraft": {
+        "main": "dreamyboyYT",
+        "rank": "Tag",
+        "alts": [
+          "dreamyguyYT"
+        ]
+      },
+      "jobs": [
+        "Rendőr",
+        "Detektív"
+      ],
+      "policeRecords": []
     }
   }
-
 }
