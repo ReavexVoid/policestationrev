@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Reaper Pad OS - Creator</title>
+<style>
+body{margin:0;background:#000;color:#ff0033;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh}
+#os{border:6px solid #ff0033;width:360px;height:520px;padding:10px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-start;align-items:center}
+#status{border-bottom:2px solid #ff0033;width:100%;padding-bottom:5px;margin-bottom:10px;text-align:center}
+#screen{border:2px solid #ff0033;height:350px;width:100%;display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(10,1fr)}
+.cell{border:1px solid #330011;height:30px;cursor:pointer}
+.empty{background:#000}
+.wall{background:#330011}
+.start{background:#ff0033}
+.goal{background:#ff8800}
+#tools{margin-top:5px;width:100%;display:flex;justify-content:space-between}
+button{background:#000;color:#ff0033;border:2px solid #ff0033;padding:5px;flex:1;margin:2px}
+textarea{width:100%;margin-top:5px;background:#000;color:#ff0033;border:2px solid #ff0033;height:60px;font-family:monospace}
+</style>
+</head>
+<body>
+
+<div id="os">
+<div id="status">REAPER PAD OS - CREATOR</div>
+<div id="screen"></div>
+<div id="tools">
+<button onclick="setTool(0)">EMPTY</button>
+<button onclick="setTool(1)">WALL</button>
+<button onclick="setTool(2)">START</button>
+<button onclick="setTool(3)">GOAL</button>
+</div>
+<button onclick="exportMap()">EXPORT</button>
+<textarea id="out" placeholder="Encrypted export"></textarea>
+</div>
+
+<script>
+const KEY="rvx"
+const enc=t=>btoa([...t].map((c,i)=>String.fromCharCode(c.charCodeAt(0)^KEY.charCodeAt(i%KEY.length))).join(""))
+
+let tool=1
+const w=10,h=10
+let map=Array.from({length:h},()=>Array(w).fill(0))
+const screen=document.getElementById("screen")
+
+function setTool(t){tool=t}
+
+for(let y=0;y<h;y++){
+for(let x=0;x<w;x++){
+const cell=document.createElement("div")
+cell.className="cell empty"
+cell.dataset.x=x
+cell.dataset.y=y
+cell.onclick=()=>{
+map[y][x]=tool
+cell.className="cell "+["empty","wall","start","goal"][tool]
+}
+screen.appendChild(cell)
+}
+}
+
+function exportMap(){
+document.getElementById("out").value=enc(JSON.stringify({w,h,map}))
+}
+</script>
+
+</body>
+</html>
