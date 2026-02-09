@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Reaper Pad OS - Player</title>
+<style>
+body {
+  margin:0;
+  background:#000;
+  color:#0f0;
+  font-family:monospace;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+#os {
+  border:6px solid #0f0;
+  width:360px;
+  height:520px;
+  padding:10px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+}
+#status {
+  border-bottom:2px solid #0f0;
+  width:100%;
+  padding-bottom:5px;
+  margin-bottom:10px;
+  text-align:center;
+}
+#screen {
+  border:2px solid #0f0;
+  height:350px;
+  width:100%;
+  display:grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap:1px;
+  background:#111;
+}
+.cell {
+  width:100%;
+  height:100%;
+  box-sizing:border-box;
+}
+.empty {background:#000;}
+.wall {background:#003300;}
+.player {background:#0f0;}
+.goal {background:#ff0;}
+textarea,button {
+  width:100%;
+  margin-top:5px;
+  background:#000;
+  color:#0f0;
+  border:2px solid #0f0;
+  font-family:monospace;
+  padding:5px;
+}
+</style>
+</head>
+<body>
+
+<div id="os" style="display:none">
+  <div id="status">REAPER PAD OS - PLAYER</div>
+  <div id="screen"></div>
+  <textarea id="import" placeholder="Paste export here"></textarea>
+  <button onclick="loadMap()">LOAD MAP</button>
+</div>
+
+<script>
+const KEY = "rvx";
+const screen = document.getElementById("screen");
+let map=[], w=10, h=10, px=0, py=0;
+
+// --- Password prompt ---
+(function askPassword(){
+  let pw = prompt("Enter password:");
+  if(pw === KEY){
+    document.getElementById("os").style.display = "flex";
+    initGrid();
+  } else {
+    alert("Wrong password");
+    location.reload();
+  }
+})()
+
+function dec(t){
+  t = t.replace(/\s+/g,"");
+  t = atob(t);
+  return [...t].map((c,i) => String.fromCharCode(c.charCodeAt(0) ^ KEY.charCodeAt(i % KEY.length))).join("");
+}
+
+// --- Initialize empty grid so it’s visible ---
+function initGrid(){
+  screen.innerHTML = "";
+  map = Array.from({length:h}, () => Array(w).fill(0));
+  for(let y=0; y<h; y++){
+    for(let x=0; x<w; x++){
+      const cell = document.createElement("div");
+      cell.className="cell empty";
+      screen.appendChild(cell);
+    }
+  }
+}
+
+function draw(){
+  screen.innerHTML="";
+  for(let y=0;y<h;y++){
+    for(let x=0;x<w;x++){
+      const cell = document.createElement("div");
+      cell.className="cell";
+      if(map[y][x]==1) cell.classList.add("wall");
+      if(map[y][x]==2){px=x; py=y; cell.classList.add("player");}
+      if(map[y][x]==3) cell.classList.add("goal");
+      screen.appendChild(cell);
+    }
+  }
+}
+
+function loadMap(){
+  try{
+    const data = JSON.parse(dec(document.getElementById("import").value));
+    map = data.map;
+    w = data.w;
+    h = data.h;
+    screen.style.gridTemplateColumns = `repeat(${w}, 1fr)`;
+    screen.style.gridTemplateRows = `repeat(${h}, 1fr)`;
+
+    // Check start
+    let startFound = false;
+    for(let y=0;y<h;y++){
+      for(let x=0;x<w;x++){
+        if(map[y][x]==2) startFound=true;
+      }
+    }
+    if(!startFound){alert("No START found! Add START in Creator."); return;}
+    draw();
+  }catch{
+    alert("IMPORT FAILED");
+  }
+}
+
+// WASD movement
+document.addEventListener("keydown", e=>{
+  if(map.length===0) return;
+  let nx=px, ny=py;
+  if(e.key=="w") ny--;
+  if(e.key=="s") ny++;
+  if(e.key=="a") nx--;
+  if(e.key=="d") nx++;
+  if(map[ny] && map[ny][nx] != 1){
+    map[py][px]=0;
+    px=nx; py=ny;
+    if(map[py][px]==3){alert("GOAL REACHED!");}
+    map[py][px]=2;
+    draw();
+  }
+});
+</script>
+
+</body>
+</html>
