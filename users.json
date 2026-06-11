@@ -78,6 +78,19 @@
         "Detektív"
       ],
       "policeRecords": []
+    },
+    "005": {
+      "name": "bani",
+      "birth": "2013-06-28",
+      "dangerLevel": "0",
+      "favoriteColor": "Kék",
+      "minecraft": {
+        "main": "bani0629",
+        "rank": "Tag",
+        "alts": "bani"
+      },
+      "jobs": "Rendőr",
+      "policeRecords": []
     }
   }
 }
