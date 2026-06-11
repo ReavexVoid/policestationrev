@@ -87,7 +87,9 @@
       "minecraft": {
         "main": "bani0629",
         "rank": "Tag",
-        "alts": "bani"
+        "alts": [
+          "bani"
+        ],
       },
       "jobs": "Rendőr",
       "policeRecords": []
