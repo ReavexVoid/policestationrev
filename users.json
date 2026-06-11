@@ -91,7 +91,9 @@
           "bani"
         ],
       },
-      "jobs": "Rendőr",
+      "jobs": [
+        "Rendőr"
+      ],
       "policeRecords": []
     }
   }
