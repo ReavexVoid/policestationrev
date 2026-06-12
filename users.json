@@ -38,18 +38,25 @@
     "003": {
       "name": "Paper",
       "birth": "2026-01-01",
-      "dangerLevel": 1,
+      "dangerLevel": 2,
       "favoriteColor": "Kék",
       "minecraft": {
-        "main": "xXXanteXXx",
-        "alts": [],
+        "main": "Bananmen_God",
+        "alts": [
+          "xXXanteXXx"
+        ],
         "rank": "Tag"
       },
       "jobs": [
-        "Rendőr",
         "Közmunkás"
       ],
-      "policeRecords": []
+      "policeRecords": [
+        {
+          "date": "2026-06-12",
+          "reason": "Jogtalan területre belépés",
+          "dangerIncrease": 1
+        }
+      ]
     },
     "004": {
       "name": "dreamyboyYT",
