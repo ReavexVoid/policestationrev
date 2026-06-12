@@ -82,7 +82,7 @@
     "005": {
       "name": "bani",
       "birth": "2013-06-28",
-      "dangerLevel": 0,
+      "dangerLevel": 1,
       "favoriteColor": "Kék",
       "minecraft": {
         "main": "bani0629",
@@ -94,7 +94,13 @@
       "jobs": [
         "Rendőr"
       ],
-      "policeRecords": []
+      "policeRecords": [
+        {
+          "date": "2026-06-12"
+          "reason": "Rongálás (Bank)"
+          "dangerIncrease": "1"
+        }
+      ]
     }
   }
 }
