@@ -96,8 +96,8 @@
       ],
       "policeRecords": [
         {
-          "date": "2026-06-12"
-          "reason": "Rongálás (Bank)"
+          "date": "2026-06-12",
+          "reason": "Rongálás (Bank)",
           "dangerIncrease": "1"
         }
       ]
