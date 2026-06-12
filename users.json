@@ -27,9 +27,7 @@
       "favoriteColor": "Narancssárga",
       "minecraft": {
         "main": "Foxmester10",
-        "alts": [
-          "nincs"
-        ],
+        "alts": [],
         "rank": "Owner"
       },
       "jobs": [
@@ -86,7 +84,13 @@
       "jobs": [
         "Rendőr"
       ],
-      "policeRecords": []
+      "policeRecords": [
+        {
+          "date": "2026-06-12",
+          "reason": "Rongálás",
+          "dangerIncrease": 1
+        }
+      ]
     }
   }
 }
