@@ -23,7 +23,7 @@
     "002": {
       "name": "Foxmester10",
       "birth": "1987-01-01",
-      "dangerLevel": 0,
+      "dangerLevel": 1,
       "favoriteColor": "Narancssárga",
       "minecraft": {
         "main": "Foxmester10",
@@ -33,21 +33,20 @@
       "jobs": [
         "Rendőr"
       ],
-      "policeRecords": []
+      "policeRecords": [
+        {
+          "date": "2026-06-13",
+          "reason": "Jogtalan fegyverhasználat",
+          "dangerIncrease": 1
+        }
+      ]
     },
     "003": {
       "name": "Paper",
       "birth": "2026-01-01",
       "dangerLevel": 2,
       "favoriteColor": "Kék",
-      "minecraft": {
-        "main": "Bananmen_God",
-        "alts": [
-          "xXXanteXXx"
-        ],
-        "rank": "Tag"
-      },
-      "jobs": [
+      "minecraft": [
         "Közmunkás"
       ],
       "policeRecords": [
