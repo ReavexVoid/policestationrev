@@ -47,7 +47,9 @@
       "dangerLevel": 2,
       "favoriteColor": "Kék",
       "minecraft": [
-        "Közmunkás"
+       "jobs": [
+         "Közmunkás"
+       ]
       ],
       "policeRecords": [
         {
